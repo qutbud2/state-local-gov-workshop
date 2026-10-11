@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <title>State & Local Government Data Agent and Ontology Workshop</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; margin:0; background:#f4f6f8; color:#1a2332; line-height:1.55; }
+  header { background:linear-gradient(135deg,#0b2545,#13315c); color:#fff; padding:40px 30px; }
+  header h1 { margin:0 0 8px 0; font-size:30px; }
+  header p { margin:0; font-size:16px; color:#cfe0f0; }
+    .container { max-width:1000px; margin:0 auto; padding:30px; }
+  .toc { background:#fff; border:1px solid #d7dee6; border-radius:8px; padding:20px 25px; margin-bottom:30px; }
+    .toc h2 { margin-top:0; font-size:18px; color:#0b2545; }
+  .toc ol { columns:2; padding-left:20px; }
+  .toc a { color:#13315c; text-decoration:none; }
+  .toc a:hover { text-decoration:underline; }
+  section { background:#fff; border:1px solid #d7dee6; border-radius:8px; padding:25px 30px; margin-bottom:25px; }
+      section h2 { color:#0b2545; border-bottom:2px solid #e2a63a; padding-bottom:8px; font-size:22px; }
+  section h3 { color:#13315c; font-size:17px; margin-top:22px; }
+  table { border-collapse:collapse; width:100%; margin:15px 0; font-size:14px; }
+  th, td { border:1px solid #d7dee6; padding:10px 12px; text-align:left; vertical-align:top; }
+  th { background:#0b2545; color:#fff; }
+    tr:nth-child(even) { background:#f4f6f8; }
+    .badge { display:inline-block; background:#e2a63a; color:#1a2332; border-radius:4px; padding:2px 8px; font-size:12px; font-weight:bold; margin-right:6px;}
+    .app-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-top:15px; }
+  .app-card { border:1px solid #d7dee6; border-radius:8px; padding:16px 18px; background:#fbfcfd; }
+  .app-card h4 { margin:0 0 6px 0; color:#0b2545; font-size:15px; }
+  .app-card .meta { font-size:12px; color:#5a6b7d; margin-bottom:8px; }
+  .app-card .query { font-style:italic; font-size:13px; color:#13315c; background:#eef3f8; padding:8px 10px; border-radius:6px; margin-top:8px; }
+    code { background:#eef3f8; padding:2px 6px; border-radius:4px; font-size:13px; }
+  pre { background:#0b2545; color:#e6edf4; padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; }
+    .note { background:#fff8e8; border-left:4px solid #e2a63a; padding:12px 16px; margin:15px 0; font-size:14px; }
+  </style>
+    </head>
+<body>
+
+<header>
+  <div class="container" style="padding:0;">
+        <h1>State &amp; Local Government Data Agent &amp; Ontology Workshop</h1>
+    <p>Building intelligent, conversational data agents on top of a unified government data ontology using Rayfin</p>
+  </div>
+</header>
+
+<div class="container">
+
+      <div class="toc">
+        <h2>Workshop Contents</h2>
+    <ol>
+      <li><a href="#overview">Workshop Overview &amp; Objectives</a></li>
+      <li><a href="#prereqs">Prerequisites &amp; Setup</a></li>
+      <li><a href="#agenda">Agenda</a></li>
+      <li><a href="#module1">Module 1: Mapping the Government Data Landscape</a></li>
+      <li><a href="#module2">Module 2: Designing the Ontology</a></li>
+      <li><a href="#module3">Module 3: Building the Data Agent in Rayfin</a></li>
+      <li><a href="#module4">Module 4: Hands-On Lab</a></li>
+      <li><a href="#module5">Module 5: Applications You Can Build With Rayfin</a></li>
+      <li><a href="#wrapup">Wrap-Up &amp; Next Steps</a></li>
+    </ol>
+  </div>
+
+  <section id="overview">
+    <h2>1. Workshop Overview &amp; Objectives</h2>
+    <p>This workshop walks state and local government teams through designing a shared data ontology across agency systems, then using Rayfin to stand up a conversational data agent that department staff, analysts, and the public can query in plain language.</p>
+    <p><strong>By the end of this workshop, participants will be able to:</strong></p>
+    <ul>
+      <li>Identify and catalog the core data sources used across government departments</li>
+      <li>Design an ontology that models citizens, services, cases, assets, and finances as connected entities</li>
+      <li>Build and configure a Rayfin data agent on top of that ontology</li>
+      <li>Test the agent with realistic constituent and staff questions</li>
+      <li>Identify at least ten applications they could build on this foundation</li>
+    </ul>
+    <p><strong>Audience:</strong> IT/data teams, GIS analysts, 311/constituent services leads, budget and finance staff, and digital services teams within city, county, or state government.</p>
+  </section>
+
+  <section id="prereqs">
+    <h2>2. Prerequisites &amp; Setup</h2>
+    <ul>
+          <li>Access to a Rayfin workspace with permissions to create data agents and ontologies</li>
+      <li>Read access to at least two or three source systems (e.g., 311/CRM, permitting, financial/ERP, GIS, CAD/RMS)</li>
+      <li>A data governance contact who can confirm which fields are public, internal-only, or restricted (e.g., CJIS, HIPAA, PII)</li>
+          <li>Sample or production datasets for the exercises in Module 4</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Government data often mixes public records with legally restricted data (criminal justice, health, tax). Confirm classification and access rules before connecting any source.</div>
+      </section>
+
+  <section id="agenda">
+        <h2>3. Agenda</h2>
+        <table>
+          <tr><th>Time</th><th>Module</th><th>Format</th></tr>
+          <tr><td>9:00 - 9:30</td><td>Overview &amp; Objectives</td><td>Presentation</td></tr>
+          <tr><td>9:30 - 10:15</td><td>Module 1: Mapping the Data Landscape</td><td>Discussion + worksheet</td></tr>
+      <tr><td>10:15 - 11:30</td><td>Module 2: Designing the Ontology</td><td>Guided build</td></tr>
+      <tr><td>11:30 - 12:30</td><td>Module 3: Building the Data Agent in Rayfin</td><td>Hands-on</td></tr>
+      <tr><td>1:30 - 2:30</td><td>Module 4: Hands-On Lab</td><td>Hands-on</td></tr>
+      <tr><td>2:30 - 3:30</td><td>Module 5: Applications You Can Build</td><td>Presentation + brainstorm</td></tr>
+      <tr><td>3:30 - 4:00</td><td>Wrap-Up &amp; Next Steps</td><td>Discussion</td></tr>
+    </table>
+  </section>
+
+  <section id="module1">
+        <h2>4. Module 1: Mapping the Government Data Landscape</h2>
+    <p>Before building an ontology, inventory the systems of record that will feed it. Typical state and local government sources include:</p>
+    <table>
+          <tr><th>System Type</th><th>Examples</th><th>Typical Data</th></tr>
+      <tr><td>Constituent Relationship / 311</td><td>Salesforce, SeeClickFix</td><td>Service requests, complaints, status, location</td></tr>
+      <tr><td>Permitting &amp; Licensing</td><td>Accela, Tyler EnerGov</td><td>Permit applications, inspections, licenses</td></tr>
+      <tr><td>Financial / ERP</td><td>Tyler Munis, Workday, SAP</td><td>Budgets, expenditures, vendor payments, contracts</td></tr>
+      <tr><td>GIS</td><td>Esri ArcGIS</td><td>Parcels, zoning, districts, infrastructure assets</td></tr>
+      <tr><td>Public Safety CAD/RMS</td><td>Tyler, Motorola, Central Square</td><td>Calls for service, incidents, dispatch records</td></tr>
+      <tr><td>HR / Workforce</td><td>Workday, PeopleSoft</td><td>Staffing, vacancies, overtime, org structure</td></tr>
+      <tr><td>Case Management</td><td>Custom or vendor systems</td><td>Code enforcement, social services, benefits cases</td></tr>
+      <tr><td>Legislative Management</td><td>Granicus, Legistar</td><td>Meeting agendas, minutes, ordinances, resolutions</td></tr>
+    </table>
+        <p><strong>Exercise:</strong> List your agency's three highest-value data sources and note which department owns each one and how frequently it updates.</p>
+  </section>
+
+  <section id="module2">
+        <h2>5. Module 2: Designing the Ontology</h2>
+    <p>The ontology is the shared "map" that lets the data agent reason across siloed systems. Below is a starter ontology for state and local government.</p>
+
+    <h3>Core Entities</h3>
+    <table>
+      <tr><th>Entity</th><th>Description</th><th>Key Attributes</th></tr>
+      <tr><td>Resident / Constituent</td><td>A person interacting with government services</td><td>ID, name, address, contact info</td></tr>
+      <tr><td>Department / Agency</td><td>An organizational unit providing services</td><td>Name, division, jurisdiction</td></tr>
+      <tr><td>Service Request</td><td>A 311-type request or complaint</td><td>Type, status, priority, location, created date</td></tr>
+          <tr><td>Permit / License</td><td>An application for permission to build, operate, or practice</td><td>Type, status, applicant, parcel, fees</td></tr>
+          <tr><td>Case</td><td>Code enforcement, social services, or benefits case</td><td>Type, status, caseworker, related property/person</td></tr>
+          <tr><td>Property / Parcel</td><td>A land parcel or structure</td><td>Parcel ID, address, zoning, assessed value</td></tr>
+          <tr><td>Budget / Fund</td><td>A financial allocation or account</td><td>Fund code, fiscal year, amount, department</td></tr>
+      <tr><td>Vendor / Contract</td><td>An external party providing goods or services</td><td>Vendor ID, contract terms, renewal date</td></tr>
+      <tr><td>Employee</td><td>Government staff member</td><td>Role, department, status</td></tr>
+      <tr><td>Incident</td><td>A public safety call for service or event</td><td>Type, location, response time, disposition</td></tr>
+      <tr><td>Asset</td><td>Public infrastructure (road, park, building, vehicle)</td><td>Asset type, condition, maintenance schedule</td></tr>
+          <tr><td>Legislation</td><td>Ordinance, resolution, or meeting record</td><td>Title, status, sponsor, effective date</td></tr>
+        </table>
+
+    <h3>Example Relationships</h3>
+        <table>
+          <tr><th>Relationship</th><th>From</th><th>To</th><th>Description</th></tr>
+          <tr><td>submits</td><td>Resident</td><td>Service Request</td><td>A resident files a 311 request</td></tr>
+      <tr><td>assigned to</td><td>Service Request</td><td>Department</td><td>Routed to the responsible agency</td></tr>
+      <tr><td>issued for</td><td>Permit</td><td>Property</td><td>Permit applies to a specific parcel</td></tr>
+      <tr><td>managed by</td><td>Case</td><td>Employee</td><td>Caseworker assigned to a case</td></tr>
+      <tr><td>funded by</td><td>Department</td><td>Budget</td><td>Department draws from a fund</td></tr>
+      <tr><td>fulfilled by</td><td>Contract</td><td>Vendor</td><td>Vendor delivers contracted services</td></tr>
+      <tr><td>responded to by</td><td>Incident</td><td>Department</td><td>Public safety response</td></tr>
+      <tr><td>located on</td><td>Asset</td><td>Property</td><td>Infrastructure tied to a parcel/district</td></tr>
+    </table>
+
+    <h3>Example Ontology Definition (illustrative)</h3>
+    <pre>Entity: ServiceRequest&#10;  attributes: id, type, status, priority, created_date, location&#10;  relationships:&#10;    submitted_by -&gt; Resident&#10;    assigned_to  -&gt; Department&#10;    linked_to    -&gt; Property (optional)&#10;&#10;Entity: Permit&#10;  attributes: id, type, status, applicant, fee_amount, issue_date&#10;  relationships:&#10;    issued_for   -&gt; Property&#10;    reviewed_by  -&gt; Department</pre>
+
+        <p><strong>Exercise:</strong> Add two entities relevant to your own jurisdiction (e.g., Utility Account, Voter Registration, Park Reservation) and define their relationships to existing entities.</p>
+      </section>
+
+  <section id="module3">
+        <h2>6. Module 3: Building the Data Agent in Rayfin</h2>
+    <ol>
+      <li><strong>Connect sources:</strong> Register each system (311/CRM, permitting, financial, GIS, CAD) as a data source in Rayfin.</li>
+      <li><strong>Map to the ontology:</strong> Link source tables/fields to the entities and attributes defined in Module 2.</li>
+          <li><strong>Define relationships:</strong> Configure joins (e.g., Service Request to Department, Permit to Property) so the agent can traverse connected data.</li>
+          <li><strong>Set agent instructions:</strong> Give the agent context on terminology, units, jurisdiction boundaries, and which data is public vs. restricted.</li>
+          <li><strong>Apply access controls:</strong> Restrict sensitive entities (e.g., case details, CJIS data) to authorized roles only.</li>
+      <li><strong>Test and refine:</strong> Run sample questions, review the agent's reasoning and sources, and adjust mappings or instructions as needed.</li>
+    </ol>
+  </section>
+
+      <section id="module4">
+        <h2>7. Module 4: Hands-On Lab</h2>
+        <p>Using your connected ontology, try these sample questions with your Rayfin agent:</p>
+        <ul>
+          <li>"How many open pothole requests are there in District 3 this month?"</li>
+      <li>"Which permits for 123 Main St are still pending inspection?"</li>
+          <li>"What is the average response time for fire incidents in the downtown zone?"</li>
+          <li>"How much of the Parks Department's FY25 budget has been spent so far?"</li>
+          <li>"List all code enforcement cases older than 90 days assigned to inspector Garcia."</li>
+        </ul>
+    <p><strong>Exercise:</strong> Write three questions specific to your department's data and verify the agent answers them correctly and cites the right source records.</p>
+      </section>
+
+  <section id="module5">
+    <h2>8. Module 5: Applications You Can Build With Rayfin</h2>
+    <p>Once your ontology and data agent are in place, they become the foundation for many citizen-facing and internal applications. Here are twelve examples:</p>
+        <div class="app-grid">
+
+          <div class="app-card">
+        <h4><span class="badge">1</span>311 Citizen Service Chatbot</h4>
+        <div class="meta">Users: Residents</div>
+        Lets residents submit and track service requests in natural language instead of navigating a form.
+            <div class="query">"Where's my pothole request from last week?"</div>
+      </div>
+
+      <div class="app-card">
+        <h4><span class="badge">2</span>Permit &amp; Licensing Assistant</h4>
+        <div class="meta">Users: Residents, businesses</div>
+        Guides applicants through permit requirements, fees, and status without calling the office.
+        <div class="query">"What permits do I need to open a food truck?"</div>
+      </div>
+
+          <div class="app-card">
+            <h4><span class="badge">3</span>Code Enforcement Dashboard</h4>
+        <div class="meta">Users: Inspectors, supervisors</div>
+        Cross-references properties, violations, and inspection history to prioritize casework.
+            <div class="query">"Show repeat violation properties in Ward 2."</div>
+          </div>
+
+          <div class="app-card">
+        <h4><span class="badge">4</span>Public Safety Incident Analytics</h4>
+        <div class="meta">Users: Police/fire command staff</div>
+        Surfaces patterns in calls for service and response times across districts.
+            <div class="query">"Where have response times increased this quarter?"</div>
+          </div>
+
+          <div class="app-card">
+            <h4><span class="badge">5</span>Budget Transparency Portal</h4>
+        <div class="meta">Users: Public, council members</div>
+        Lets the public ask plain-language questions about spending and budgets.
+            <div class="query">"How much did the city spend on road repair last year?"</div>
+          </div>
+
+      <div class="app-card">
+            <h4><span class="badge">6</span>Infrastructure Asset Manager</h4>
+        <div class="meta">Users: Public works staff</div>
+        Tracks maintenance schedules and condition for roads, parks, and facilities.
+            <div class="query">"Which bridges are due for inspection this year?"</div>
+      </div>
+
+          <div class="app-card">
+            <h4><span class="badge">7</span>Legislative Research Assistant</h4>
+        <div class="meta">Users: Council staff, clerks</div>
+        Searches meeting minutes, ordinances, and resolutions by topic or sponsor.
+            <div class="query">"What ordinances were passed about short-term rentals?"</div>
+      </div>
+
+          <div class="app-card">
+            <h4><span class="badge">8</span>Social Services Eligibility Navigator</h4>
+        <div class="meta">Users: Caseworkers, residents</div>
+            Helps determine program eligibility by linking household, income, and case data.
+        <div class="query">"Is this household eligible for utility assistance?"</div>
+          </div>
+
+      <div class="app-card">
+            <h4><span class="badge">9</span>Vendor &amp; Contract Intelligence</h4>
+        <div class="meta">Users: Procurement staff</div>
+        Flags upcoming contract renewals and tracks vendor performance.
+            <div class="query">"Which contracts expire in the next 60 days?"</div>
+          </div>
+
+          <div class="app-card">
+        <h4><span class="badge">10</span>Emergency Resource Coordinator</h4>
+        <div class="meta">Users: Emergency management</div>
+        Correlates shelters, supplies, and incident data during emergency response.
+            <div class="query">"Which shelters have capacity near the flood zone?"</div>
+          </div>
+
+          <div class="app-card">
+            <h4><span class="badge">11</span>Constituent Correspondence Router</h4>
+        <div class="meta">Users: Constituent services staff</div>
+        Automatically classifies and routes resident emails/calls to the right department.
+            <div class="query">"Route this complaint to the correct department."</div>
+      </div>
+
+          <div class="app-card">
+            <h4><span class="badge">12</span>Property &amp; Tax Records Assistant</h4>
+            <div class="meta">Users: Residents, assessors</div>
+        Answers questions about assessed value, tax history, and appeals status.
+        <div class="query">"Has this property's assessment been appealed?"</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="wrapup">
+    <h2>9. Wrap-Up &amp; Next Steps</h2>
+    <ul>
+      <li>Finalize your ontology with your data governance team</li>
+          <li>Pick one application from Module 5 as a pilot</li>
+      <li>Define access controls and review restricted data handling before go-live</li>
+      <li>Schedule a follow-up session to review agent accuracy and expand data sources</li>
+    </ul>
+  </section>
+
+    </div>
+    </body>
+</html>
